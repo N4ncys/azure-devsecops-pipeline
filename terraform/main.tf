@@ -25,6 +25,14 @@ resource "azurerm_log_analytics_workspace" "main" {
 }
 
 # ── Azure Container Registry ──────────────────────────────────
+#checkov:skip=CKV_AZURE_165:Geo-replication requires Premium SKU
+#checkov:skip=CKV_AZURE_237:Dedicated endpoints require Premium SKU
+#checkov:skip=CKV_AZURE_139:Public access needed for GitHub Actions pipeline
+#checkov:skip=CKV_AZURE_164:Trusted image signing requires Premium SKU
+#checkov:skip=CKV_AZURE_233:Zone redundancy requires Premium SKU
+#checkov:skip=CKV_AZURE_166:Quarantine feature requires Premium SKU
+#checkov:skip=CKV_AZURE_163:Vulnerability scanning requires Premium SKU
+#checkov:skip=CKV_AZURE_167:Retention policy requires Premium SKU
 resource "azurerm_container_registry" "main" {
   name                = "acrdevsecops5${var.environment}"
   resource_group_name = azurerm_resource_group.main.name
@@ -32,11 +40,9 @@ resource "azurerm_container_registry" "main" {
   sku                 = var.acr_sku
   admin_enabled       = false
 
-
   trust_policy {
     enabled = false
   }
-
 
   tags = azurerm_resource_group.main.tags
 }
@@ -58,15 +64,15 @@ resource "azurerm_role_assignment" "pipeline_acr_push" {
 }
 
 # ── Key Vault ─────────────────────────────────────────────────
+#checkov:skip=CKV2_AZURE_32:Private endpoint not required for demo environment
 resource "azurerm_key_vault" "main" {
-  name                       = "kv-${var.project_name}-5-${var.environment}"
-  location                   = azurerm_resource_group.main.location
-  resource_group_name        = azurerm_resource_group.main.name
-  tenant_id                  = data.azurerm_client_config.current.tenant_id
-  sku_name                   = "standard"
-  purge_protection_enabled   = true
-  soft_delete_retention_days = 7
-
+  name                          = "kv-${var.project_name}-5-${var.environment}"
+  location                      = azurerm_resource_group.main.location
+  resource_group_name           = azurerm_resource_group.main.name
+  tenant_id                     = data.azurerm_client_config.current.tenant_id
+  sku_name                      = "standard"
+  purge_protection_enabled      = true
+  soft_delete_retention_days    = 7
   public_network_access_enabled = false
 
   network_acls {
@@ -105,3 +111,4 @@ resource "azurerm_container_app_environment" "main" {
 
   tags = azurerm_resource_group.main.tags
 }
+
