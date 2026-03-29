@@ -125,7 +125,8 @@ jobs:
             --environment "cae-devsecops-prod" \
             --image "acrdevsecops5prod.azurecr.io/devsecops-demo:${{ github.sha }}" \
             --registry-server "acrdevsecops5prod.azurecr.io" \
-            --registry-identity "system" \
+            --registry-identity "/subscriptions/d3a79b4b-b5c9-4ed9-94b8-067ede14f5cd/resourceGroups/rg-devsecops-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-devsecops-pipeline" \
+            --user-assigned "/subscriptions/d3a79b4b-b5c9-4ed9-94b8-067ede14f5cd/resourceGroups/rg-devsecops-prod/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-devsecops-pipeline" \
             --target-port 8000 \
             --ingress external \
             --min-replicas 1 \
