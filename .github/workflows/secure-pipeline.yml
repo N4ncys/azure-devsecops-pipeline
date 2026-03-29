@@ -43,3 +43,25 @@ jobs:
           output_format: cli
           download_external_modules: false
           skip_check: CKV_AZURE_165,CKV_AZURE_237,CKV_AZURE_139,CKV_AZURE_164,CKV_AZURE_233,CKV_AZURE_166,CKV_AZURE_163,CKV_AZURE_167,CKV2_AZURE_32
+
+
+          image-scan:
+    name: Container Image Scan (Trivy)
+    runs-on: ubuntu-latest
+    needs: iac-scan
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t devsecops-demo:${{ github.sha }} ./app
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: devsecops-demo:${{ github.sha }}
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
