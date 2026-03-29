@@ -1,0 +1,18 @@
+[extend]
+# Extend the default Gitleaks ruleset
+useDefault = true
+
+[allowlist]
+description = "Global allowlist"
+paths = [
+    '''security/checkov-baseline.json''',
+]
+
+commits = []
+
+# Allow placeholder values used in examples
+regexes = [
+    '''PLACEHOLDER''',
+    '''YOUR_.*_HERE''',
+    '''example\.com''',
+]
