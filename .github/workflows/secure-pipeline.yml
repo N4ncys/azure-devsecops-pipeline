@@ -146,4 +146,27 @@ jobs:
             --query "properties.configuration.ingress.fqdn" \
             --output tsv)
           echo "App deployed at: https://$URL"
-          echo "APP_URL=https://$URL" >> $GITHUB_ENV
+
+  dast-scan:
+    name: DAST Scan (OWASP ZAP)
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run OWASP ZAP baseline scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: "https://ca-devsecops-demo.nicestone-4067dbbd.canadacentral.azurecontainerapps.io"
+          rules_file_name: security/zap-baseline.conf
+          cmd_options: "-a"
+          fail_action: false
+
+      - name: Upload ZAP report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zap-scan-report
+          path: report_html.html
