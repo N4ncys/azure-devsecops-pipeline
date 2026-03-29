@@ -61,6 +61,12 @@ resource "azurerm_key_vault" "main" {
   purge_protection_enabled   = false
   soft_delete_retention_days = 7
 
+  network_acls {
+    default_action = "Deny"
+    bypass         = "AzureServices"
+    ip_rules       = []
+  }
+
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
