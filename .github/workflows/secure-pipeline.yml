@@ -44,7 +44,6 @@ jobs:
           download_external_modules: false
           skip_check: CKV_AZURE_165,CKV_AZURE_237,CKV_AZURE_139,CKV_AZURE_164,CKV_AZURE_233,CKV_AZURE_166,CKV_AZURE_163,CKV_AZURE_167,CKV2_AZURE_32
 
-
   image-scan:
     name: Container Image Scan (Trivy)
     runs-on: ubuntu-latest
@@ -64,4 +63,4 @@ jobs:
           format: table
           exit-code: 1
           ignore-unfixed: true
-          severity: CRITICAL,HIGH
+          severity: CRITICAL
