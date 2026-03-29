@@ -1,0 +1,46 @@
+{
+  "added": [
+    {
+      "check_id": "CKV_AZURE_165",
+      "file_path": "/terraform/main.tf",
+      "resource": "azurerm_container_registry.main",
+      "reason": "Geo-replication requires Premium SKU. Using Basic SKU for demo environment."
+    },
+    {
+      "check_id": "CKV_AZURE_237",
+      "file_path": "/terraform/main.tf",
+      "resource": "azurerm_container_registry.main",
+      "reason": "Dedicated data endpoints require Premium SKU. Using Basic SKU for demo environment."
+    },
+    {
+      "check_id": "CKV_AZURE_139",
+      "file_path": "/terraform/main.tf",
+      "resource": "azurerm_container_registry.main",
+      "reason": "Public network access required for GitHub Actions pipeline to push images."
+    },
+    {
+      "check_id": "CKV_AZURE_164",
+      "file_path": "/terraform/main.tf",
+      "resource": "azurerm_container_registry.main",
+      "reason": "Trusted image signing requires Premium SKU. Using Basic SKU for demo environment."
+    },
+    {
+      "check_id": "CKV_AZURE_233",
+      "file_path": "/terraform/main.tf",
+      "resource": "azurerm_container_registry.main",
+      "reason": "Zone redundancy requires Premium SKU. Using Basic SKU for demo environment."
+    },
+    {
+      "check_id": "CKV_AZURE_166",
+      "file_path": "/terraform/main.tf",
+      "resource": "azurerm_container_registry.main",
+      "reason": "Quarantine feature requires Premium SKU. Using Basic SKU for demo environment."
+    },
+    {
+      "check_id": "CKV_AZURE_163",
+      "file_path": "/terraform/main.tf",
+      "resource": "azurerm_container_registry.main",
+      "reason": "Vulnerability scanning requires Standard or Premium SKU. Using Basic SKU for demo environment."
+    }
+  ]
+}
