@@ -140,12 +140,3 @@ All Azure resources are provisioned as code using Terraform. No manual portal co
 
 ---
 
-## Part of Azure Cloud Security Portfolio
-
-| # | Project |
-|---|---|
-| 1 | Azure Secure Landing Zone |
-| 2 | Cloud Native FastAPI on Azure Container Apps |
-| 3 | Secure AKS Deployment |
-| 4 | Cloud Security Monitoring & Incident Response |
-| **5** | **DevSecOps: Secure CI/CD Pipeline** |
