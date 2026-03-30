@@ -1,7 +1,5 @@
-# azure-devsecops-pipeline
+# DevSecOps: Secure CI/CD Pipeline on Azure
 End-to-end DevSecOps pipeline on Azure — SAST, secrets detection, IaC scanning, container image scanning, and DAST with automated pipeline gates. Fully provisioned as code using Terraform
-
-# Project 5 — DevSecOps: Secure CI/CD Pipeline on Azure
 
 ![Pipeline Status](https://github.com/N4ncys/azure-devsecops-pipeline/actions/workflows/secure-pipeline.yml/badge.svg)
 
