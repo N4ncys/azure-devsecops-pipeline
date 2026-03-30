@@ -161,13 +161,13 @@ jobs:
 
       - name: Run OWASP ZAP baseline scan
         uses: zaproxy/action-baseline@v0.14.0
+        env:
+          GITHUB_TOKEN: ""
         with:
           target: "https://ca-devsecops-demo.nicestone-4067dbbd.canadacentral.azurecontainerapps.io"
           rules_file_name: security/zap-baseline.conf
           cmd_options: "-a"
           fail_action: false
-          issue_title: ""
-          token: ""
 
       - name: Upload ZAP report
         uses: actions/upload-artifact@v4
